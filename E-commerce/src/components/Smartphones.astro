@@ -1,6 +1,5 @@
 ---
-// Smartphones.astro
-import ProductCard from "../components/Product.astro";
+import Product from "../components/Product.astro";
 
 const response = await fetch(
   "https://dummyjson.com/products/category/smartphones",
@@ -8,26 +7,31 @@ const response = await fetch(
 const data = await response.json();
 ---
 
+<!--Sección de Banner -->
 <section class="catalog-banner">
   <h1>Catálogo de Smartphones</h1>
 </section>
 
+<!--Sección de buscador de productos por nombre -->
 <section class="search-bar">
   <input
     type="text"
     id="searchInput"
-    placeholder="Buscar smartphone por nombre..."
+    placeholder="Buscar smartphone por nombre"
   />
 </section>
 
+<!--Div oculto que contiene un mensaje la cual se muestra si no hay datos-->
 <div id="noResults" class="no-results" style="display: none;">
   No se encontraron resultados.
 </div>
 
+<!--Div que muestra todos los productos consumidos por la API-->
 <div class="product-grid">
-  {data.products.map((product: any) => <ProductCard product={product} />)}
+  {data.products.map((product: any) => <Product product={product} />)}
 </div>
 
+<!--Referencias a styles y scripts-->
 <link rel="stylesheet" href="/styles/style.css">
 <script src="/scripts/script.js" defer></script>
 
